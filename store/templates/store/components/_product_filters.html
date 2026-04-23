@@ -1,0 +1,69 @@
+<div class="products_filter">
+    <div class="container">
+        <div class="row justify-content-around">
+            <div class="dropdown pt-2 pt-lx-0">
+                <button class="products_filter-dropdown dropdown-toggle rounded" type="button"
+                        id="dropdownColor"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if header_c %}
+                    {{ header_c }}
+                    {% else %}
+                    Цвет
+                    {% endif %}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownColor">
+                    {% for color in colors %}
+                    <li><a class="dropdown-item" href="?color={{ color.title }}">{{ color.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="dropdown pt-2 pt-lx-0">
+                <button class="products_filter-dropdown dropdown-toggle rounded" type="button"
+                        id="dropdownStrapType" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if header_m %}
+                    {{ header_m }}
+                    {% else %}
+                    Материал
+                    {% endif %}
+
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownStrapType">
+                    {% for material in materials %}
+                    <li><a class="dropdown-item" href="?material={{ material.title }}">{{ material.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="dropdown pt-2 pt-lx-0">
+                <button class="products_filter-dropdown dropdown-toggle rounded" type="button" id="dropdownSort"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if header_s %}
+                    {{ header_s }}
+                    {% else %}
+                    Отсортировать
+                    {% endif %}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownSort">
+                    <li><a class="dropdown-item" href="?sort=new">Что нового</a></li>
+                    <li><a class="dropdown-item" href="?sort=min_max">Из грязи в князи</a></li>
+                    <li><a class="dropdown-item" href="?sort=max_min">Из князи в грязи</a></li>
+                </ul>
+            </div>
+            <div class="dropdown pt-2 pt-lx-0">
+                <button class="products_filter-dropdown dropdown-toggle rounded" type="button"
+                        id="dropdownWatchType" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if header_sub %}
+                    {{ header_sub }}
+                    {% else %}
+                    {{ main_category }}
+                    {% endif %}
+
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownWatchType">
+                    {% for cat in subcategories %}
+                    <li><a class="dropdown-item" href="?subcategory={{ cat.title }}">{{ cat.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

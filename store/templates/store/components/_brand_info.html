@@ -1,0 +1,14 @@
+{% load static %}
+<section class="brand_info ">
+        <div class="brand_info-block d-flex flex-column justify-content-center">
+            <h3 class="brand_info-title">{{ product.company.title }}</h3>
+            <p class="brand_info-desc">{{ product.company.description }}</p>
+        </div>
+        <div class="brand_info-img">
+            <img src="{% if product.company.image %}
+                      {{ product.company.image.url }}
+                      {% else %}
+                      {% static 'store/images/footer_bg.png' %}
+                      {% endif %}" alt="">
+        </div>
+    </section>

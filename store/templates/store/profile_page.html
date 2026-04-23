@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block poster %}
+{% endblock poster %}
+
+{% block main %}
+
+<section>
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <img src="{% if profile.avatar %}
+                                  {{ profile.avatar.url }}
+                                  {% else %}
+                                  {% static 'img/avatar.jpg' %}
+                                  {% endif %}"
+                             alt="avatar"
+                             class="rounded-circle img-fluid" style="width: 150px;">
+                        <h5 class="my-3">{{ profile.user.first_name }}
+                            {{ profile.user.last_name }}</h5>
+                        <p class="text-muted mb-1">{{ profile.job }}</p>
+                        <p class="text-muted mb-4">{{ profile.city }} {{ profile.region }}</p>
+                        <div class="d-flex justify-content-center mb-2">
+                            {% if request.user == profile.user %}
+                            <a href="{% url 'change_profile' profile.user.id %}" class="btn btn-primary">
+                                <b>
+                                    Изменить профиль
+                                </b>
+                            </a>
+                            <a href="" class="btn btn-primary">
+                                <b>
+                                    Изменить пaроль
+                                </b>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4 mb-lg-0">
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush rounded-3">
+
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-telegram fa-lg" style="color: #229ED9;"></i>
+                                <p class="mb-0">{{ profile.telegram }}</p>
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                                <p class="mb-0">{{ profile.instagram }}</p>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Full Name</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">
+                                    {{ profile.user.first_name }} {{ profile.user.last_name }}
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Email</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{ profile.user.email }}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Phone</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{ profile.phone }}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Address</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{ profile.city }} {{ profile.region }}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Bio</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{ profile.bio }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for article in articles %}
+                    <div class="col-md-6">
+                        <div class="card mb-4 mb-md-0">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <b>Категория: {{ article.category }}</b>
+                                    </div>
+                                    <div>
+                                        <b>Просмотры: {{ article.views }}</b>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="{% url 'article_detail' article.id %}">
+                                <img src="{% if article.image %}
+                                          {{ article.image.url }}
+                                          {% else %}
+                                          {% static 'img/blog.jpg' %}
+                                          {% endif %}" class="card-img-top" alt="...">
+                            </a>
+
+                            <div class="card-body">
+                                <h5 class="card-title">{{ article.title }}</h5>
+                                <p class="card-text">{{ article.description }}</p>
+                            </div>
+
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <b class="text-secondary">{{ article.created_at }}</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock main %}

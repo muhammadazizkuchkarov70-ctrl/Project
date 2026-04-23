@@ -1,0 +1,22 @@
+<h1>Корзина</h1>
+
+{% if cart %}
+    {% for item in cart %}
+        <div>
+            <b>{{ item.product.name }}</b> — {{ item.quantity }} шт.<br>
+            Цена: {{ item.total_price }} сум
+
+            <a href="{% url 'cart_remove' item.product.id %}">Удалить</a>
+        </div>
+        <hr>
+    {% endfor %}
+
+    <h2>Итого: {{ cart.get_total_price }} сум</h2>
+
+    <a href="{% url 'cart_clear' %}" class="btn btn-danger">
+        Очистить корзину
+    </a>
+
+{% else %}
+    <p>Корзина пуста</p>
+{% endif %}

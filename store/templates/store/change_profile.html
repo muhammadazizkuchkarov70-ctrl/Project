@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block poster %}
+{% endblock poster %}
+
+{% block main %}
+
+<div class="container mt-3 mb-3">
+    <div class="d-flex justify-content-center">
+        <div class="col-5">
+            <div class="card p-4 bg-secondary text-white">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ user_form.as_p }}
+                    {{ profile_form.as_p }}
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary btn-lg m-3">
+                            <b>Изменить</b>
+                        </button>
+                        <a href="{% url 'profile_page' request.user.id %}" class="btn btn-success btn-lg m-3">
+                            <b>Назад</b>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}

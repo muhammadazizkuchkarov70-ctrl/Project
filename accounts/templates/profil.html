@@ -1,0 +1,20 @@
+<h1>Личный кабинет</h1>
+
+<div style="display:flex; gap:30px; align-items:flex-start;">
+
+    <div>
+        <img src="{{ request.user.profile.avatar.url }}" width="150" style="border-radius:10px;">
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <h3>Данные аккаунта</h3>
+        {{ u_form.as_p }}
+
+        <h3>Профиль</h3>
+        {{ p_form.as_p }}
+
+        <button type="submit">Сохранить изменения</button>
+    </form>
+</div>

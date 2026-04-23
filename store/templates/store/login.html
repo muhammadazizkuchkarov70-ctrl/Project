@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+
+{% block poster %}
+{% endblock poster %}
+
+
+{% block main %}
+
+<div class="container mt-3 mb-3">
+    <div class="d-flex justify-content-center">
+        <div class="col-4">
+            <div class="card p-3 mb-5">
+                <h3 class="text-center mb-3">{{ title }}</h3>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary">
+                            Войти
+                        </button>
+                        <h6 class="d-flex align-items-center">Нет аккаунта ?<a class="navbar-brand text-danger"
+                                                                                href="{% url 'registration_user' %}">
+                            Регистрация
+                        </a></h6>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}

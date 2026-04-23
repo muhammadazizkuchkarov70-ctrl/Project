@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load store_tags %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+<!-- BLOCKS GUARANTEES START -->
+{% include 'store/components/_guarantees.html' %}
+<!-- BLOCKS GUARANTEES START -->
+
+{% get_categories as categories %}
+
+{% for category in categories %}
+{% if category.subcategories.all %}
+<section class="products-section products_section-watches">
+    {% for subcategory in category.subcategories.all %}
+    {% if subcategory.products.all %}
+    <!-- SECTION AUTOMATIC EDITION START -->
+    <h2 class="main_title text-center">{{ subcategory.title }}</h2>
+    <div class="container">
+        <div class="row">
+            {% for product in subcategory.products.all %}
+            {% include 'store/components/_product_card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+    <!-- SECTION AUTOMATIC EDITION END -->
+    {% endif %}
+    {% endfor %}
+</section>
+{% endif %}
+{% endfor %}
+
+<!-- SLIDER BLOCK START -->
+{% include 'store/components/_slider.html' %}
+<!-- SLIDER BLOCK END -->
+<!-- BLOCK EMAIL FORM START -->
+{% include 'store/components/_email_form.html' %}
+<!-- BLOCK EMAIL FORM END -->
+{% endblock main %}

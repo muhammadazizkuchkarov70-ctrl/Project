@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block poster %}
+{% endblock poster %}
+
+
+{% block main %}
+
+<div class="container">
+    <h1 class="text-center">
+        Рассылка сообщений
+    </h1>
+    <form method="post" enctype="multipart/form-data" action="">
+        {% csrf_token %}
+        <input type="text" class="form-control mb-3" name="subject" placeholder="Тема рассылки">
+        <textarea class="form-control" name="text" id="" cols="30" rows="10" placeholder="Текст для рассылки..."></textarea>
+        <button type="submit" class="btn btn-primary mb-5">
+            <b>Отправить всем</b>
+        </button>
+    </form>
+
+
+</div>
+
+{% endblock main %}

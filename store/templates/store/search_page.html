@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block poster %}
+{% endblock poster %}
+
+
+{% block main %}
+
+<div class="container" style="margin-bottom: 65px;">
+    <form class="input-group d-flex" method="get" action="{% url 'search_results' %}">
+        <input name="q" type="text" class="form-control" aria-label="Пример размера поля ввода"
+               aria-describedby="inputGroup-sizing-default" placeholder="Напишите что вы ищете ...">
+        <button class="btn btn-primary" style="margin-top: 0px; margin-left: 10px;">Поиск</button>
+    </form>
+</div>
+
+
+<div class="container">
+    <div class="row">
+
+        {% for product in products %}
+        {% include 'store/components/_product_card.html' %}
+        {% endfor %}
+
+
+    </div>
+</div>
+
+{% endblock main %}
